@@ -1,6 +1,6 @@
 from nicegui import context, ui
 
-from app.views.MainView import MainView
+from app.views.main import main_view
 
 
 @ui.page("/")
@@ -22,7 +22,7 @@ async def index():
 
     context.client.content.classes("p-0")
     ui.page_title("TraveLog")
-    MainView()
+    main_view()
 
 
 ui.run()
