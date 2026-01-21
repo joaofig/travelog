@@ -1,6 +1,7 @@
 from nicegui import ui
 
 from app.controls.leaflet.types import GeoBounds, LatLng
+from lib.tasks.managed import ManagedTasks
 
 
 async def setup_map(m: ui.leaflet) -> None:
@@ -40,3 +41,15 @@ def map_view():
     )
     ManagedTasks().create(setup_map(m))
     return m
+
+
+def map_panel():
+    main_splitter = ui.splitter(horizontal=True, value=70)
+    main_splitter.classes("w-full h-full")
+
+    with main_splitter:
+        with main_splitter.before:
+            leaflet = map_view()
+
+        with main_splitter.after:
+            ui.label("Bottom Panel").classes("text-center")

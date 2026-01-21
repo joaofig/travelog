@@ -1,5 +1,6 @@
 from nicegui import ui
 
+from app.views.map import map_panel
 from app.views.trip import trip_view
 
 
@@ -9,4 +10,4 @@ def main_view():
             trip_view()
 
         with splitter.after:
-            ui.label("Right Panel").classes("text-center")
+            map_panel()
