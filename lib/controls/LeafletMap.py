@@ -1,16 +1,30 @@
-from typing import Self, Dict
+from typing import Self, Dict, Union
 
 from nicegui import ui
 
-from app.controls.leaflet.types import GeoBounds
+from lib.models.geo.GeoBounds import GeoBounds
 
 
 class LeafletMap(ui.leaflet):
-    def __init__(self):
-        super().__init__()
-        self.add_control(ui.leaflet.zoom_control())
-        self.add_control(ui.leaflet.fullscreen_control())
-        self.add_control(ui.leaflet.scale_control())
+    def __init__(
+            self,
+            draw_control: Union[bool, Dict] = False,
+            hide_drawn_items: bool = False,
+            options=None,
+            **kwargs):
+        if not options:
+            options = {}
+
+        ui.leaflet.__init__(
+            self,
+            draw_control=draw_control,
+            hide_drawn_items=hide_drawn_items,
+            options=options,
+            **kwargs,
+        )
+        # self.add_control(ui.leaflet.zoom_control())
+        # self.add_control(ui.leaflet.fullscreen_control())
+        # self.add_control(ui.leaflet.scale_control())
 
     def invalidate_size(self, animate: bool = False) -> Self:
         self.run_map_method("invalidateSize", animate)

@@ -1,10 +1,12 @@
 from nicegui import ui
 
-from app.controls.leaflet.types import GeoBounds, LatLng
+from lib.controls.LeafletMap import LeafletMap
+from lib.models.geo.GeoBounds import GeoBounds
+from lib.models.geo.LatLng import LatLng
 from lib.tasks.managed import ManagedTasks
 
 
-async def setup_map(m: ui.leaflet) -> None:
+async def setup_map(m: LeafletMap) -> None:
     await m.initialized()
 
     m.fit_bounds(
@@ -33,7 +35,7 @@ def map_view():
     }
 
     m = (
-        ui.leaflet(
+        LeafletMap(
             draw_control=draw_control,
             hide_drawn_items=True,
         )
