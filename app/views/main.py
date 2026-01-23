@@ -1,6 +1,6 @@
 from nicegui import ui
 
-from app.views.map import map_panel
+from app.views.MapPanelView import MapPanelView
 from app.views.trip import trip_view
 
 
@@ -10,4 +10,4 @@ def main_view():
             trip_view()
 
         with splitter.after:
-            map_panel()
+            MapPanelView()
